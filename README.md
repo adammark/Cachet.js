@@ -39,8 +39,8 @@ else {
 }
 ```
 
-Items can be set to expire at a certain time or after a certain number of
-minutes:
+Items can be set to expire at a specific time, after a certain number of
+minutes, or at the end of a session:
 
 ``` javascript
 // expire at 12:00 AM on January 1
@@ -48,12 +48,8 @@ Cachet.setItem("articles", articles, new Date(2014, 0, 1));
 
 // expire in 60 minutes
 Cachet.setItem("articles", articles, 60);
-```
 
-Alternatively, items can be set to expire at the end of a session:
-
-``` javascript
-// save for this session only
+// expire at the end of the browser session
 Cachet.setItem("articles", articles, "session");
 ```
 
