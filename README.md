@@ -9,14 +9,14 @@ Include `<script src="cachet.min.js"></script>`.
 ## Method summary
 
 * Cachet.isSupported()
-* Cachet.setItem(key, val, expires)
-* Cachet.setItems(items, expires)
+* Cachet.setItem(key, val [, expires])
+* Cachet.setItems(items [, expires])
 * Cachet.getItem(key)
 * Cachet.getItems(keys)
 * Cachet.removeItem(key)
 * Cachet.removeItems(keys)
-* Cachet.plus(key, n)
-* Cachet.minus(key, n)
+* Cachet.plus(key [, n])
+* Cachet.minus(key [, n])
 * Cachet.purge()
 
 ## Setting items
@@ -115,7 +115,7 @@ You can remove items from the cache individually or in batches. To remove a
 single item:
 
 ``` javascript
-if (removeItem("user")) {
+if (Cachet.removeItem("user")) {
     // item was removed
 }
 ```
@@ -123,7 +123,7 @@ if (removeItem("user")) {
 To remove multiple items, pass an array of keys:
 
 ``` javascript
-if (removeItems(["fruits", "vegetables"])) {
+if (Cachet.removeItems(["fruits", "vegetables"])) {
     // all items were removed
 }
 ```
@@ -137,15 +137,16 @@ Cachet.purge();
 
 ## Global counters
 
-You can use Cachet.js to maintain global counters across sessions:
+You can maintain global counters across sessions with the methods `plus` and
+`minus`:
 
 ``` javascript
-var visits = Cachet.plus("visits"); // 1
-var visits = Cachet.plus("visits"); // 2
-var visits = Cachet.plus("visits", 10); // 12
+visits = Cachet.plus("visits"); // 1
+visits = Cachet.plus("visits"); // 2
+visits = Cachet.plus("visits", 10); // 12
 
-var visits = Cachet.minus("visits"); // 11
-var visits = Cachet.minus("visits", 10); // 1
+visits = Cachet.minus("visits"); // 11
+visits = Cachet.minus("visits", 10); // 1
 ```
 
 *It is not necessary to call setItem() before calling plus() or minus().*
