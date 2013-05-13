@@ -1,5 +1,5 @@
 /*
-  Cachet.js v1.0: http://github.com/adammark/Cachet.js
+  Cachet.js v1.0.1: http://github.com/adammark/Cachet.js
   MIT License
   (c) 2013 Adam Mark
 */
@@ -10,7 +10,14 @@
 
     Cachet = {
         isSupported: function () {
-            return "localStorage" in window;
+            // https://gist.github.com/paulirish/5558557
+            try {
+                localStorage.setItem("_test_", "_test_");
+                localStorage.removeItem("_test_");
+                return true;
+            } catch(e) {
+                return false;
+            }
         },
 
         setItem: function (key, val, expires) {
